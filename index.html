@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Коммерческое предложение · Внедрение Битрикс24 для аутстаффинга</title>
+<meta name="description" content="Внедрение Битрикс24 для аутстаффинговой компании: 8 воронок в двух контурах, автоматизация, интеграции с сайтом, телефонией, мессенджерами, Авито Работа и hh.ru, отчётность и обучение команды.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Onest:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#F4F4EE;
+  --paper-2:#EFEFE7;
+  --ink:#16241C;
+  --ink-2:#3B4A41;
+  --ink-3:#6C7A70;
+  --line:rgba(22,36,28,.09);
+  --line-2:rgba(22,36,28,.06);
+  --white:#FCFCFA;
+  --lime:#C6F24E;
+  --lime-deep:#A9DE2C;
+  --lime-ink:#3C4B12;
+  --brass:#E7C778;
+  --brass-ink:#6B4F14;
+  --teal:#2FA9B8;
+  --teal-deep:#1E7F8C;
+  --glass:rgba(252,252,250,.62);
+  --glass-2:rgba(252,252,250,.78);
+  --radius:28px;
+  --ease:cubic-bezier(.32,.72,0,1);
+  --soft: 0 1px 2px rgba(22,40,28,.04), 0 10px 28px rgba(22,40,28,.06), 0 30px 70px rgba(22,40,28,.05);
+  --soft-lg: 0 2px 4px rgba(22,40,28,.05), 0 18px 44px rgba(22,40,28,.08), 0 50px 110px rgba(22,40,28,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Onest',system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+}
+/* ============ BACKGROUND FIELD ============ */
+.bg-field{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(60% 45% at 78% 8%, rgba(198,242,78,.28), transparent 60%),
+    radial-gradient(50% 40% at 12% 22%, rgba(231,199,120,.22), transparent 62%),
+    radial-gradient(55% 50% at 90% 88%, rgba(47,169,184,.14), transparent 60%),
+    radial-gradient(45% 40% at 20% 95%, rgba(198,242,78,.16), transparent 60%),
+    linear-gradient(180deg,var(--paper),var(--paper-2));
+}
+.bg-noise{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+section{position:relative}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:40;padding:18px 0 0}
+.nav-inner{
+  margin:0 auto;width:max-content;max-width:calc(100% - 40px);
+  display:flex;align-items:center;gap:22px;
+  padding:9px 10px 9px 20px;border-radius:999px;
+  background:var(--glass-2);border:1px solid var(--line);
+  backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);
+  box-shadow:0 1px 1px rgba(255,255,255,.7) inset, 0 8px 30px rgba(22,40,28,.08);
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Unbounded';font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+.brand .dot{width:9px;height:9px;border-radius:3px;background:var(--lime);box-shadow:0 0 0 4px rgba(198,242,78,.25)}
+.nav-meta{font-family:'JetBrains Mono';font-size:11px;color:var(--ink-3);letter-spacing:.02em;white-space:nowrap;display:none}
+@media(min-width:860px){.nav-meta{display:block}}
+.nav-cta{display:none}
+@media(min-width:640px){
+  .nav-cta{display:inline-flex;align-items:center;gap:9px;padding:8px 8px 8px 16px;border-radius:999px;border:0;cursor:pointer;
+    background:var(--ink);color:var(--paper);font-family:'Onest',sans-serif;font-size:13px;font-weight:500;text-decoration:none;white-space:nowrap;
+    transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(22,40,28,.18)}
+  .nav-cta .ic{width:26px;height:26px;border-radius:999px;background:var(--lime);color:var(--lime-ink);display:grid;place-items:center;
+    transition:transform .5s var(--ease)}
+  .nav-cta:hover .ic{transform:translateY(2px)}
+}
+
+/* ============ PDF FAB (mobile) ============ */
+.fab{position:fixed;right:18px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:9px;
+  padding:12px 18px;border-radius:999px;border:0;cursor:pointer;
+  background:var(--ink);color:var(--paper);font-family:'Onest',sans-serif;font-size:14px;font-weight:500;
+  box-shadow:0 10px 30px rgba(22,40,28,.28);transition:transform .5s var(--ease)}
+.fab:active{transform:scale(.96)}
+@media(min-width:640px){.fab{display:none}}
+
+/* ============ EYEBROW ============ */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:999px;
+  background:var(--glass);border:1px solid var(--line);
+  font-family:'JetBrains Mono';font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--ink-2)}
+.eyebrow .spark{width:7px;height:7px;border-radius:2px;background:var(--lime);box-shadow:0 0 0 3px rgba(198,242,78,.28)}
+
+/* ============ TYPO ============ */
+h1,h2,h3{font-family:'Unbounded';font-weight:700;letter-spacing:-.02em;line-height:1.02;color:var(--ink)}
+.display{font-size:clamp(34px,5.6vw,66px);font-weight:700;line-height:1.04}
+.h2{font-size:clamp(28px,4vw,46px)}
+.lede{font-size:clamp(17px,2vw,21px);color:var(--ink-2);font-weight:400;line-height:1.5;max-width:64ch}
+.mono{font-family:'JetBrains Mono'}
+.accent{color:var(--lime-deep)}
+mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);color:inherit;padding:0 .05em;border-radius:2px}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(52px,8vw,100px) 0 clamp(40px,6vw,64px)}
+.hero .lede{margin-top:26px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.chip{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:14px;
+  background:var(--glass);border:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
+.chip b{font-family:'Unbounded';font-weight:600;font-size:14px;color:var(--ink)}
+.chip .k{font-family:'JetBrains Mono';font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3)}
+
+/* ============ FLOW RIBBON ============ */
+.flow{margin-top:52px;border-radius:30px;padding:9px;background:var(--glass-2);border:1px solid var(--line);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--soft)}
+.flow-core{border-radius:22px;background:var(--white);padding:24px 24px 22px;box-shadow:inset 0 1px 1px rgba(255,255,255,.8)}
+.flow-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.flow-head h3{font-size:15px;font-weight:600}
+.flow-head span{font-family:'JetBrains Mono';font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-3)}
+.flow-track{display:flex;align-items:stretch;gap:7px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.fstep{flex:1 0 auto;min-width:104px;border-radius:14px;padding:13px 13px 14px;border:1px solid var(--line-2);
+  background:linear-gradient(170deg,rgba(198,242,78,.14),rgba(252,252,250,0));display:flex;flex-direction:column;gap:5px}
+.fstep.b{background:linear-gradient(170deg,rgba(47,169,184,.13),rgba(252,252,250,0))}
+.fstep .n{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.14em;color:var(--ink-3)}
+.fstep .t{font-size:12.8px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.flow-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--ink-3)}
+.flow-legend span{display:inline-flex;align-items:center;gap:8px}
+.flow-legend i{width:9px;height:9px;border-radius:3px;background:var(--lime);display:inline-block}
+.flow-legend i.t2{background:var(--teal)}
+
+/* ============ SECTION HEAD ============ */
+.shead{max-width:70ch;margin-bottom:clamp(30px,4vw,52px)}
+.shead .eyebrow{margin-bottom:20px}
+.shead p{margin-top:18px;color:var(--ink-2);font-size:clamp(15px,1.6vw,18px)}
+.pad{padding:clamp(56px,8vw,100px) 0}
+
+/* ============ RESULT BADGES ============ */
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rcard{padding:22px 20px;border-radius:20px;background:var(--glass);border:1px solid var(--line)}
+.rcard .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--white);border:1px solid var(--line-2);margin-bottom:16px;color:var(--ink)}
+.rcard h3{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
+.rcard p{font-size:13px;color:var(--ink-3);line-height:1.45}
+@media(max-width:900px){.results{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.results{grid-template-columns:1fr}}
+
+/* ============ CONTOURS (funnel map) ============ */
+.contours{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:880px){.contours{grid-template-columns:1fr}}
+.ctr{border-radius:var(--radius);padding:9px;background:var(--glass-2);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.ctr-core{border-radius:calc(var(--radius) - 9px);background:var(--white);overflow:hidden;box-shadow:inset 0 1px 1px rgba(255,255,255,.8)}
+.ctr-head{padding:22px 24px 20px;border-bottom:1px solid var(--line-2);
+  background:linear-gradient(160deg,rgba(198,242,78,.18),rgba(252,252,250,0))}
+.ctr.b .ctr-head{background:linear-gradient(160deg,rgba(47,169,184,.15),rgba(252,252,250,0))}
+.ctr-head .k{font-family:'JetBrains Mono';font-size:9.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--ink-3)}
+.ctr-head h3{font-size:clamp(19px,2.4vw,24px);font-weight:600;margin:9px 0 8px}
+.ctr-head p{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.ctr-count{display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:5px 12px;border-radius:999px;
+  background:var(--white);border:1px solid var(--line-2);font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase}
+.fn{display:flex;flex-direction:column}
+.fn-item{display:grid;grid-template-columns:34px 1fr;gap:13px;padding:16px 24px;border-bottom:1px solid var(--line-2)}
+.fn-item:last-child{border-bottom:0}
+.fn-item .num{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;
+  background:rgba(198,242,78,.3);color:var(--lime-ink);font-family:'JetBrains Mono';font-size:11.5px;font-weight:600;margin-top:1px}
+.ctr.b .fn-item .num{background:rgba(47,169,184,.18);color:var(--teal-deep)}
+.fn-item h4{font-family:'Unbounded';font-size:14px;font-weight:600;letter-spacing:-.01em;margin-bottom:5px}
+.fn-item p{font-size:12.8px;color:var(--ink-3);line-height:1.45}
+.fn-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.fn-tags span{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--paper);border:1px solid var(--line-2);color:var(--ink-2)}
+
+/* ============ AUTOMATION STRIP ============ */
+.auto{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+@media(max-width:820px){.auto{grid-template-columns:1fr}}
+.acard{padding:22px 22px;border-radius:20px;background:var(--glass);border:1px solid var(--line)}
+.acard .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--white);border:1px solid var(--line-2);margin-bottom:14px;color:var(--ink)}
+.acard h4{font-family:'Unbounded';font-size:14.5px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+.acard ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.acard li{display:flex;gap:9px;font-size:13px;color:var(--ink-2);line-height:1.4}
+.acard li .b{flex:0 0 auto;width:16px;height:16px;border-radius:5px;background:rgba(198,242,78,.35);color:var(--lime-ink);display:grid;place-items:center;margin-top:2px}
+
+/* ============ SOURCE MAP ============ */
+.srcmap{border-radius:30px;padding:9px;background:var(--glass-2);border:1px solid var(--line);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--soft);margin-bottom:16px}
+.srcmap-core{border-radius:22px;background:var(--white);padding:26px 26px 24px;box-shadow:inset 0 1px 1px rgba(255,255,255,.8);
+  display:grid;grid-template-columns:1fr 54px 1fr;gap:14px;align-items:center}
+@media(max-width:820px){.srcmap-core{grid-template-columns:1fr;gap:16px}}
+.srccol .k{font-family:'JetBrains Mono';font-size:9.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--ink-3);display:block;margin-bottom:12px}
+.srclist{display:flex;flex-direction:column;gap:7px}
+.srcitem{display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:14px;border:1px solid var(--line-2);
+  background:linear-gradient(160deg,rgba(231,199,120,.14),rgba(252,252,250,0))}
+.srcitem .ic{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--brass-ink)}
+.srcitem b{font-size:13.5px;font-weight:600;letter-spacing:-.01em;display:block}
+.srcitem small{font-size:11.8px;color:var(--ink-3);line-height:1.35;display:block}
+.srcarrow{display:grid;place-items:center;color:var(--ink-3)}
+@media(max-width:820px){.srcarrow svg{transform:rotate(90deg)}}
+.srctarget{border-radius:18px;border:1px solid var(--line-2);padding:20px 20px;
+  background:linear-gradient(160deg,rgba(198,242,78,.2),rgba(47,169,184,.08))}
+.srctarget h4{font-family:'Unbounded';font-size:15px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+.srctarget p{font-size:13px;color:var(--ink-2);line-height:1.45;margin-bottom:14px}
+.srctarget ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.srctarget li{display:flex;gap:9px;font-size:12.8px;color:var(--ink-2);line-height:1.4}
+.srctarget li .b{flex:0 0 auto;width:16px;height:16px;border-radius:5px;background:var(--white);color:var(--lime-ink);display:grid;place-items:center;margin-top:2px}
+
+/* ============ INTEGRATION CARDS ============ */
+.intg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.intg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.intg{grid-template-columns:1fr}}
+.icard{padding:22px 22px;border-radius:22px;background:var(--glass);border:1px solid var(--line);display:flex;flex-direction:column}
+.icard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.icard .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--white);border:1px solid var(--line-2);color:var(--ink)}
+.icard .price{font-family:'JetBrains Mono';font-size:12px;font-weight:500;color:var(--ink-2);padding:5px 10px;border-radius:999px;
+  background:var(--white);border:1px solid var(--line-2);white-space:nowrap}
+.icard h4{font-family:'Unbounded';font-size:15px;font-weight:600;margin-bottom:7px;letter-spacing:-.01em}
+.icard > p{font-size:12.8px;color:var(--ink-3);line-height:1.45;margin-bottom:13px}
+.icard ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:auto}
+.icard li{display:flex;gap:9px;font-size:12.8px;color:var(--ink-2);line-height:1.4}
+.icard li .b{flex:0 0 auto;width:16px;height:16px;border-radius:5px;background:rgba(198,242,78,.35);color:var(--lime-ink);display:grid;place-items:center;margin-top:2px}
+.intg-note{margin-top:16px;padding:16px 18px;border-radius:18px;background:var(--white);border:1px solid var(--line-2);
+  font-size:13.2px;color:var(--ink-2);line-height:1.5;display:flex;gap:12px;align-items:flex-start}
+.intg-note .b{flex:0 0 auto;width:22px;height:22px;border-radius:7px;background:rgba(47,169,184,.18);color:var(--teal-deep);display:grid;place-items:center;margin-top:1px}
+
+/* ============ STAGES ============ */
+.stages{display:flex;flex-direction:column;gap:16px}
+.stage{position:relative;border-radius:var(--radius);
+  background:var(--glass-2);border:1px solid var(--line);padding:8px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.stage-core{border-radius:calc(var(--radius) - 8px);background:var(--white);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.8);
+  display:grid;grid-template-columns:96px 1fr auto;gap:8px;align-items:stretch;overflow:hidden}
+.stage-num{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  padding:28px 0;background:linear-gradient(160deg,rgba(198,242,78,.16),rgba(252,252,250,0));border-right:1px solid var(--line-2)}
+.stage-num .n{font-family:'Unbounded';font-weight:700;font-size:30px;color:var(--ink)}
+.stage-num .ic{color:var(--lime-ink)}
+.stage-body{padding:26px 24px}
+.stage-body h3{font-size:clamp(18px,2.2vw,23px);font-weight:600;margin-bottom:10px}
+.stage-body p{font-size:14.5px;color:var(--ink-2);max-width:66ch}
+.stage-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.stag{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--paper);border:1px solid var(--line-2);color:var(--ink-2)}
+.stage-price{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:3px;
+  padding:26px 28px;background:linear-gradient(180deg,rgba(244,244,238,.5),rgba(252,252,250,0));border-left:1px solid var(--line-2);min-width:170px}
+.stage-price .k{font-family:'JetBrains Mono';font-size:9.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3)}
+.stage-price .v{font-family:'Unbounded';font-weight:600;font-size:22px;white-space:nowrap}
+.stage-price .h{font-family:'JetBrains Mono';font-size:11px;color:var(--ink-3)}
+@media(max-width:820px){
+  .stage-core{grid-template-columns:1fr}
+  .stage-num{flex-direction:row;justify-content:flex-start;gap:14px;padding:16px 24px;border-right:0;border-bottom:1px solid var(--line-2)}
+  .stage-num .n{font-size:22px}
+  .stage-price{align-items:flex-start;border-left:0;border-top:1px solid var(--line-2);flex-direction:row;justify-content:space-between;width:100%}
+}
+
+/* ============ REPORTS ============ */
+.reps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:980px){.reps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.reps{grid-template-columns:1fr}}
+.rep{padding:20px 18px;border-radius:18px;background:var(--glass);border:1px solid var(--line)}
+.rep .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--white);border:1px solid var(--line-2);margin-bottom:13px;color:var(--ink)}
+.rep h4{font-family:'Unbounded';font-size:13.5px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em;line-height:1.2}
+.rep p{font-size:12.3px;color:var(--ink-3);line-height:1.4}
+
+/* ============ ESTIMATE ============ */
+.est-shell{border-radius:34px;padding:10px;background:var(--glass-2);border:1px solid var(--line);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:var(--soft-lg)}
+.est-core{border-radius:26px;background:var(--white);overflow:hidden;box-shadow:inset 0 1px 1px rgba(255,255,255,.8)}
+.est-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:26px 30px;border-bottom:1px solid var(--line-2);flex-wrap:wrap}
+.est-head h3{font-size:19px;font-weight:600}
+.est-head .note{font-size:12.5px;color:var(--ink-3)}
+.erow{display:grid;grid-template-columns:1fr auto;gap:16px;padding:15px 30px;border-bottom:1px solid var(--line-2);align-items:baseline}
+.erow .l{font-size:14.5px;color:var(--ink)}
+.erow .l small{display:block;color:var(--ink-3);font-size:12.5px;margin-top:3px;line-height:1.4}
+.erow .r{font-family:'JetBrains Mono';font-weight:500;font-size:15px;white-space:nowrap}
+.erow.sub{background:rgba(244,244,238,.5)}
+.erow.total{padding:22px 30px;background:linear-gradient(90deg,rgba(198,242,78,.14),rgba(231,199,120,.10))}
+.erow.total .l{font-family:'Unbounded';font-weight:600;font-size:16px}
+.erow.total .r{font-family:'Unbounded';font-weight:700;font-size:24px}
+.erow .r .u{color:var(--ink-3);font-weight:400;font-size:13px}
+.egroup{font-family:'JetBrains Mono';font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--ink-3);padding:20px 30px 6px}
+.est-foot{padding:16px 30px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12.5px;color:var(--ink-3)}
+.est-foot span{display:inline-flex;align-items:center;gap:7px}
+.est-foot .d{width:6px;height:6px;border-radius:2px;background:var(--lime-deep)}
+
+/* ============ SCOPE / OUT OF SCOPE ============ */
+.scope{border-radius:30px;padding:9px;background:var(--glass-2);border:1px solid var(--line);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--soft)}
+.scope-core{border-radius:22px;background:linear-gradient(150deg,rgba(231,199,120,.16),rgba(252,252,250,.65));padding:30px 32px}
+.scope-core > h3{font-size:19px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:11px}
+.scope-core > h3 .ic{width:36px;height:36px;border-radius:11px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--brass-ink)}
+.scope-core > p{font-size:14px;color:var(--ink-2);max-width:74ch;margin-bottom:22px}
+.scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:900px){.scope-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.scope-grid{grid-template-columns:1fr}}
+.sitem{padding:15px 16px;border-radius:15px;background:var(--white);border:1px solid var(--line-2)}
+.sitem h4{font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600;margin-bottom:4px;letter-spacing:0}
+.sitem p{font-size:12.2px;color:var(--ink-3);line-height:1.4}
+.scope-note{margin-top:20px;padding:15px 18px;border-radius:15px;background:var(--white);border:1px solid var(--line-2);
+  font-size:13.5px;color:var(--ink-2);display:flex;gap:11px;align-items:flex-start}
+.scope-note .b{flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:rgba(231,199,120,.4);color:var(--brass-ink);display:grid;place-items:center;margin-top:1px}
+
+/* ============ PLAN ============ */
+.plan{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.plan{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.plan{grid-template-columns:1fr}}
+.pcard{padding:20px 18px;border-radius:18px;background:var(--glass);border:1px solid var(--line)}
+.pcard .w{font-family:'JetBrains Mono';font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-3);margin-bottom:10px;display:block}
+.pcard h4{font-family:'Unbounded';font-size:14px;font-weight:600;margin-bottom:7px;letter-spacing:-.01em;line-height:1.2}
+.pcard p{font-size:12.4px;color:var(--ink-3);line-height:1.45}
+
+/* ============ TERMS ============ */
+.terms{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tcard{padding:26px 26px;border-radius:22px;background:var(--glass);border:1px solid var(--line)}
+.tcard h3{font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.tcard h3 .ic{width:34px;height:34px;border-radius:10px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--ink)}
+.tlist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.tlist li{display:flex;gap:11px;font-size:14px;color:var(--ink-2);line-height:1.45}
+.tlist li .b{flex:0 0 auto;width:18px;height:18px;border-radius:6px;background:rgba(198,242,78,.35);color:var(--lime-ink);display:grid;place-items:center;margin-top:2px}
+@media(max-width:760px){.terms{grid-template-columns:1fr}}
+
+/* ============ CTA ============ */
+.cta{margin:clamp(56px,8vw,100px) 0 0}
+.cta-shell{border-radius:36px;padding:10px;background:var(--glass-2);border:1px solid var(--line);box-shadow:var(--soft-lg)}
+.cta-core{border-radius:28px;padding:clamp(40px,6vw,72px) clamp(28px,5vw,60px);text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(70% 120% at 20% 0%,rgba(198,242,78,.30),transparent 60%),
+    radial-gradient(80% 120% at 90% 100%,rgba(231,199,120,.22),transparent 60%),
+    var(--white)}
+.cta-core h2{font-size:clamp(26px,4vw,44px);margin-bottom:18px}
+.cta-core p{color:var(--ink-2);font-size:clamp(15px,1.8vw,18px);max-width:54ch;margin:0 auto 32px}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:11px;padding:14px 14px 14px 26px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px;
+  font-family:'Onest',sans-serif;border:0;cursor:pointer;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.btn .ic{width:32px;height:32px;border-radius:999px;display:grid;place-items:center;transition:transform .5s var(--ease)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary .ic{background:var(--lime);color:var(--lime-ink)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(22,40,28,.22)}
+.btn.primary:hover .ic{transform:translateY(2px)}
+.btn:active{transform:scale(.98)}
+
+/* ============ FOOTER ============ */
+.foot{padding:44px 0 60px;margin-top:60px;border-top:1px solid var(--line)}
+.foot-in{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.foot .brand{font-size:18px}
+.foot .co{font-size:13px;color:var(--ink-3);line-height:1.6;margin-top:10px}
+.foot .co a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line)}
+.foot .rt{font-family:'JetBrains Mono';font-size:11px;color:var(--ink-3);text-align:right;line-height:1.7}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.reveal.in{opacity:1;transform:none;filter:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}}
+
+/* ============ PRINT (PDF export) ============ */
+@media print{
+  @page{size:A4;margin:12mm}
+  html,body{background:#fff!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .bg-field,.bg-noise,.nav,.fab,.cta .btns{display:none!important}
+  .reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .pad,.hero,.cta{padding-top:16px!important;padding-bottom:16px!important;margin-top:0!important}
+  .wrap{max-width:none;padding:0 2mm}
+  .stage,.est-shell,.cta-shell,.scope,.rcard,.tcard,.ctr,.acard,.rep,.flow,.chip,.icard,.srcmap,.pcard{
+    box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+    border-color:#DEDED6!important;break-inside:avoid;page-break-inside:avoid}
+  .stage,.est-shell,.ctr,.scope,.acard,.tcard,.rep,.rcard,.flow,.icard,.srcmap,.pcard{background:#fff!important}
+  /* слишком высокие блоки — иначе оставляют пустую страницу перед собой */
+  .scope,.scope-core,.srcmap,.srcmap-core,.ctr,.ctr-core,.est-shell,.est-core{break-inside:auto;page-break-inside:auto}
+  .sitem,.scope-note,.fn-item,.srcitem,.srctarget,.intg-note,.erow,.est-head,.est-foot{break-inside:avoid;page-break-inside:avoid}
+  .egroup{break-after:avoid;page-break-after:avoid}
+  .flow-track{overflow:visible!important;flex-wrap:wrap}
+  .fstep{min-width:0;flex:1 1 22%}
+  /* на A4 срабатывают мобильные медиа-запросы — возвращаем колонки, иначе полупустые страницы */
+  .srcmap-core{grid-template-columns:1fr 40px 1fr}
+  .contours{grid-template-columns:1fr 1fr}
+  .auto{grid-template-columns:repeat(3,1fr)}
+  .intg{grid-template-columns:repeat(3,1fr)}
+  .reps{grid-template-columns:repeat(3,1fr)}
+  .results{grid-template-columns:repeat(4,1fr)}
+  .plan{grid-template-columns:repeat(4,1fr)}
+  .stage-core{grid-template-columns:80px 1fr auto}
+  .stage-num{flex-direction:column;padding:20px 0;border-right:1px solid #DEDED6;border-bottom:0}
+  .stage-price{align-items:flex-end;flex-direction:column;width:auto;border-left:1px solid #DEDED6;border-top:0}
+  .display{font-size:34px!important}
+  .h2{font-size:24px!important}
+  .lede{font-size:15px!important}
+  h1,h2,h3{color:#111}
+  .shead{margin-bottom:16px!important}
+  section.pad, header.hero, section.cta{page-break-inside:auto}
+  #smeta{page-break-before:always}
+  #scope .shead{break-after:avoid;page-break-after:avoid}
+  .foot{margin-top:20px;padding:20px 0 0;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="bg-field"></div>
+<div class="bg-noise"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>ЛАЙМ</div>
+    <div class="nav-meta">Внедрение Битрикс24 · аутстаффинг · 24.07.2026</div>
+    <button class="nav-cta" type="button" onclick="window.print()">Скачать PDF
+      <span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg></span>
+    </button>
+  </div>
+</nav>
+
+<!-- FAB (mobile) -->
+<button class="fab" type="button" onclick="window.print()">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+  Скачать PDF
+</button>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="reveal"><span class="eyebrow"><span class="spark"></span>Коммерческое предложение · Внедрение</span></div>
+    <h1 class="display reveal" style="margin-top:26px">Внедрение <mark>Битрикс24</mark><br>для аутстаффинга</h1>
+    <p class="lede reveal">Собираем в одном портале два ключевых процесса компании: <b style="color:var(--ink)">привлечение заказчиков</b> и <b style="color:var(--ink)">подбор с трудоустройством персонала</b>. Восемь связанных воронок, автоматическая передача данных между ними и все каналы — сайт, звонки, мессенджеры, Авито Работа и hh.ru — заведены в систему.</p>
+
+    <div class="hero-meta reveal">
+      <span class="chip"><span class="k">Воронок</span><b>8</b></span>
+      <span class="chip"><span class="k">Интеграций</span><b>5</b></span>
+      <span class="chip"><span class="k">Срок</span><b>6–8 недель</b></span>
+      <span class="chip"><span class="k">Стоимость работ</span><b>212 000 ₽ + НДС</b></span>
+    </div>
+
+    <div class="flow reveal">
+      <div class="flow-core">
+        <div class="flow-head">
+          <h3>Сквозной путь: от заявки заказчика до работника на объекте</h3>
+          <span>8 воронок · 2 контура</span>
+        </div>
+        <div class="flow-track">
+          <div class="fstep"><span class="n">01</span><span class="t">Отдел развития</span></div>
+          <div class="fstep"><span class="n">02</span><span class="t">Согласование КП и договора</span></div>
+          <div class="fstep"><span class="n">03</span><span class="t">Регламент (бриф)</span></div>
+          <div class="fstep"><span class="n">04</span><span class="t">Фиксация оплат</span></div>
+          <div class="fstep b"><span class="n">05</span><span class="t">Отдел подбора</span></div>
+          <div class="fstep b"><span class="n">06</span><span class="t">Покупка билетов</span></div>
+          <div class="fstep b"><span class="n">07</span><span class="t">Производство</span></div>
+          <div class="fstep b"><span class="n">08</span><span class="t">Сопровождение</span></div>
+        </div>
+        <div class="flow-legend">
+          <span><i></i>Контур 1 · Отдел развития</span>
+          <span><i class="t2"></i>Контур 2 · Подбор и трудоустройство</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- RESULT -->
+<section class="pad">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Что вы получаете</span>
+      <h2 class="h2" style="margin-top:20px">Управляемый процесс<br>вместо таблиц и чатов</h2>
+      <p>Заявка заказчика, бриф по объекту, отклик кандидата, билеты, заезд и сопровождение — в одной системе, где каждый шаг виден руководителю и ничего не теряется между отделами и каналами.</p>
+    </div>
+    <div class="results">
+      <div class="rcard reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h10"/><circle cx="18" cy="19" r="2.4"/></svg></div>
+        <h3>8 рабочих воронок</h3>
+        <p>Два контура — развитие и подбор — настроены под ваш реальный процесс, а не «как в коробке».</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2"/><path d="M2 12h13m0 0-3-3m3 3-3 3"/></svg></div>
+        <h3>Данные едут сами</h3>
+        <p>Договор согласован — бриф создаётся автоматически. Бриф закрыт — заявка падает в подбор. Без ручного переноса.</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 12h8m-4-4v8"/></svg></div>
+        <h3>Все каналы в одном окне</h3>
+        <p>Заявка с сайта, звонок, сообщение в WhatsApp и Telegram, отклик с Авито и hh — сразу карточкой в нужной воронке.</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 4-5"/></svg></div>
+        <h3>Цифры для решений</h3>
+        <p>Пять базовых отчётов: сделки и конверсии, кандидаты и трудоустройства, источники откликов, билеты, прибытие.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTOURS -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Карта процессов</span>
+      <h2 class="h2" style="margin-top:20px">Два контура, восемь воронок</h2>
+      <p>Каждая воронка — со своими стадиями, полями в карточке и правилами перехода. Ниже — состав и что фиксируем на каждом шаге.</p>
+    </div>
+
+    <div class="contours">
+      <!-- CONTOUR A -->
+      <div class="ctr reveal">
+        <div class="ctr-core">
+          <div class="ctr-head">
+            <span class="k">Контур 1 · Отдел развития</span>
+            <h3>Заказчик и деньги</h3>
+            <p>Путь заказчика: от первичного интереса до подписанного договора, зафиксированного регламента работы на объекте и поступивших оплат.</p>
+            <span class="ctr-count">4 воронки</span>
+          </div>
+          <div class="fn">
+            <div class="fn-item">
+              <span class="num">01</span>
+              <div>
+                <h4>Отдел развития</h4>
+                <p>Работа с потенциальным заказчиком: квалификация, потребность в персонале, объект и условия.</p>
+                <div class="fn-tags"><span>Объект и регион</span><span>Специальности</span><span>Кол-во людей</span><span>Ставка и график</span></div>
+              </div>
+            </div>
+            <div class="fn-item">
+              <span class="num">02</span>
+              <div>
+                <h4>Согласование КП и договоров</h4>
+                <p>Подготовка коммерческого предложения и договора, круг согласований, фиксация финальных условий.</p>
+                <div class="fn-tags"><span>Версия КП</span><span>Сумма</span><span>Согласующие</span><span>Дата подписания</span></div>
+              </div>
+            </div>
+            <div class="fn-item">
+              <span class="num">03</span>
+              <div>
+                <h4>Составление регламента (брифа)</h4>
+                <p>Условия работы на объекте: требования к кандидатам, документы, проживание, питание, СИЗ, график вахты.</p>
+                <div class="fn-tags"><span>Требования</span><span>Документы</span><span>Проживание</span><span>Вахта</span></div>
+              </div>
+            </div>
+            <div class="fn-item">
+              <span class="num">04</span>
+              <div>
+                <h4>Фиксация оплат</h4>
+                <p>Контроль расчётов по договору: счета, авансы, поступления, закрывающие документы и просрочки.</p>
+                <div class="fn-tags"><span>Счета</span><span>Поступления</span><span>Закрывающие</span><span>Просрочка</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTOUR B -->
+      <div class="ctr b reveal">
+        <div class="ctr-core">
+          <div class="ctr-head">
+            <span class="k">Контур 2 · Подбор и трудоустройство</span>
+            <h3>Кандидат и объект</h3>
+            <p>Путь кандидата: от отклика с Авито, hh или мессенджера до выхода на смену и сопровождения на объекте. Данные синхронизируются с карточкой кандидата.</p>
+            <span class="ctr-count">4 воронки</span>
+          </div>
+          <div class="fn">
+            <div class="fn-item">
+              <span class="num">05</span>
+              <div>
+                <h4>Отдел подбора</h4>
+                <p>Обработка кандидата из любого источника: интервью, проверка соответствия брифу, готовность к оформлению и выезду.</p>
+                <div class="fn-tags"><span>Источник отклика</span><span>Специальность</span><span>Гражданство</span><span>Документы</span><span>Опыт</span></div>
+              </div>
+            </div>
+            <div class="fn-item">
+              <span class="num">06</span>
+              <div>
+                <h4>Покупка билетов</h4>
+                <p>Логистика заезда: маршрут, дата выезда, тип и стоимость билета, подтверждение отправки кандидату.</p>
+                <div class="fn-tags"><span>Маршрут</span><span>Дата выезда</span><span>Стоимость</span><span>Подтверждение</span></div>
+              </div>
+            </div>
+            <div class="fn-item">
+              <span class="num">07</span>
+              <div>
+                <h4>Производство</h4>
+                <p>Прибытие на объект, оформление, инструктаж и допуски, фактический выход на первую смену.</p>
+                <div class="fn-tags"><span>Дата прибытия</span><span>Оформление</span><span>Инструктаж</span><span>Выход на смену</span></div>
+              </div>
+            </div>
+            <div class="fn-item">
+              <span class="num">08</span>
+              <div>
+                <h4>Сопровождение</h4>
+                <p>Ведение работника на вахте: продления, замены, невыходы, ротация и корректное завершение вахты.</p>
+                <div class="fn-tags"><span>Статус на объекте</span><span>Продление</span><span>Замена</span><span>Завершение</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTOMATION -->
+    <div class="auto">
+      <div class="acard reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10m0 0-3-3m3 3-3 3"/><path d="M20 17H10m0 0 3-3m-3 3 3 3"/></svg></div>
+        <h4>Связка воронок</h4>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Автосоздание элемента в следующей воронке</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Перенос полей без ручного ввода</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Синхронизация с карточкой кандидата</li>
+        </ul>
+      </div>
+      <div class="acard reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></div>
+        <h4>Задачи и уведомления</h4>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Автозадачи ответственным по стадиям</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Уведомления сотрудникам в портале</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Сообщения клиентам и кандидатам в мессенджер</li>
+        </ul>
+      </div>
+      <div class="acard reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+        <h4>Дисциплина данных</h4>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Обязательные поля на нужных стадиях</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Автозаполнение для отчётности</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Источник фиксируется автоматически</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="pad" style="padding-top:0" id="integrations">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Интеграции · 5 каналов</span>
+      <h2 class="h2" style="margin-top:20px">Ни один заказчик<br>и ни один кандидат не потерян</h2>
+      <p>Заявки и отклики приходят из разных мест, и именно на стыке каналов теряются деньги. Подключаем все источники к порталу так, чтобы обращение создавало карточку в нужной воронке — с источником, историей переписки и записью звонка.</p>
+    </div>
+
+    <div class="srcmap reveal">
+      <div class="srcmap-core">
+        <div class="srccol">
+          <span class="k">Источники обращений</span>
+          <div class="srclist">
+            <div class="srcitem">
+              <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span>
+              <span><b>Сайт</b><small>Формы, заявки заказчиков и анкеты кандидатов</small></span>
+            </div>
+            <div class="srcitem">
+              <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 9 6 15 15 15l2-3-4-2-2 2c-2-1-5-4-6-6l2-2-2-4-3 0Z"/></svg></span>
+              <span><b>Телефония</b><small>Входящие и исходящие звонки, записи разговоров</small></span>
+            </div>
+            <div class="srcitem">
+              <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 1 1-3.6-6.7"/><path d="M4 20l1.5-4"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span>
+              <span><b>Мессенджеры</b><small>WhatsApp и Telegram в открытых линиях</small></span>
+            </div>
+            <div class="srcitem">
+              <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+              <span><b>Авито Работа</b><small>Отклики и чаты по вакансиям</small></span>
+            </div>
+            <div class="srcitem">
+              <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M6 12h12"/></svg></span>
+              <span><b>hh.ru</b><small>Отклики на вакансии и база резюме</small></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="srcarrow">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m0 0-5-5m5 5-5 5"/></svg>
+        </div>
+
+        <div class="srctarget">
+          <h4>Битрикс24 · единое окно</h4>
+          <p>Каждое обращение автоматически превращается в карточку и попадает к ответственному — без ручного переноса из чатов, почты и личных кабинетов площадок.</p>
+          <ul>
+            <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Автосоздание лида / кандидата в нужной воронке</li>
+            <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Источник и вакансия фиксируются автоматически</li>
+            <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Переписка и звонки хранятся в карточке</li>
+            <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Дубли по телефону склеиваются, отклик не задваивается</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="intg">
+      <div class="icard reveal">
+        <div class="icard-top">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span>
+          <span class="price">12 000 ₽</span>
+        </div>
+        <h4>Сайт</h4>
+        <p>Заявки заказчиков и анкеты кандидатов с сайта — сразу в CRM, с сохранением рекламного источника.</p>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Подключение форм сайта к порталу</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Разные формы → разные воронки</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>UTM-метки и источник в карточке</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Онлайн-чат и виджет на сайте</li>
+        </ul>
+      </div>
+
+      <div class="icard reveal">
+        <div class="icard-top">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 9 6 15 15 15l2-3-4-2-2 2c-2-1-5-4-6-6l2-2-2-4-3 0Z"/></svg></span>
+          <span class="price">14 000 ₽</span>
+        </div>
+        <h4>Телефония</h4>
+        <p>Все звонки — в CRM: с записью, ответственным и задачей по пропущенному вызову.</p>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Подключение вашего оператора к порталу</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Маршрутизация на ответственного менеджера</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Запись разговора в карточке</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Пропущенный звонок → задача, звонок с нового номера → лид</li>
+        </ul>
+      </div>
+
+      <div class="icard reveal">
+        <div class="icard-top">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 1 1-3.6-6.7"/><path d="M4 20l1.5-4"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span>
+          <span class="price">16 000 ₽</span>
+        </div>
+        <h4>Мессенджеры</h4>
+        <p>WhatsApp и Telegram в открытых линиях: переписка в карточке, а не в личном телефоне сотрудника.</p>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Подключение WhatsApp и Telegram</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Очередь и распределение диалогов</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Шаблоны сообщений кандидатам</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Автосообщения по стадиям: билет, выезд, заезд</li>
+        </ul>
+      </div>
+
+      <div class="icard reveal">
+        <div class="icard-top">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+          <span class="price">16 000 ₽</span>
+        </div>
+        <h4>Авито Работа</h4>
+        <p>Отклики и чаты с Авито — в воронке подбора, вместе с вакансией и источником.</p>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Отклик → карточка кандидата автоматически</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Чат Авито в открытых линиях портала</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Вакансия, объект и регион в карточке</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Быстрый ответ рекрутера прямо из портала</li>
+        </ul>
+      </div>
+
+      <div class="icard reveal">
+        <div class="icard-top">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M6 12h12"/></svg></span>
+          <span class="price">14 000 ₽</span>
+        </div>
+        <h4>hh.ru</h4>
+        <p>Отклики с hh падают в ту же воронку подбора — рекрутеру не нужно жить в двух кабинетах.</p>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Отклик на вакансию → карточка кандидата</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Контакты и резюме подтягиваются в карточку</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Автозадача рекрутеру на первый контакт</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Отчёт по источникам: где кандидат дешевле</li>
+        </ul>
+      </div>
+
+      <div class="icard reveal" style="background:linear-gradient(160deg,rgba(198,242,78,.22),rgba(252,252,250,.6))">
+        <div class="icard-top">
+          <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span>
+          <span class="price">72 000 ₽</span>
+        </div>
+        <h4>Итого по интеграциям</h4>
+        <p>Пять каналов, подключённых к порталу и заведённых в воронки. Любой блок можно снять из проекта или добавить позже — стоимость меняется на его цену.</p>
+        <ul>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Настройка на стороне портала и площадок</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Тестирование на реальных обращениях</li>
+          <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Инструкция сотрудникам по работе в каналах</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="intg-note reveal">
+      <span class="b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5m0 3.5v.01"/><circle cx="12" cy="12" r="9"/></svg></span>
+      <span>Интеграции выполняются в объёме, который позволяют официальные коннекторы и API площадок. Для этого нужны действующие аккаунты работодателя на Авито Работа и hh.ru с доступом к API, подключённый оператор телефонии и доступ к сайту. <b>Подписки и лицензии сервисов</b> (провайдер WhatsApp, приложения Маркета Битрикс24, тарифы площадок и оператора связи) оплачиваются вами напрямую и в стоимость работ не входят. Если у площадки на вашем тарифе нужного доступа нет — предложим рабочий обходной вариант до старта работ.</span>
+    </div>
+  </div>
+</section>
+
+<!-- STAGES -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Состав работ · 5 блоков</span>
+      <h2 class="h2" style="margin-top:20px">Что входит в проект</h2>
+      <p>Прозрачная декомпозиция: за что именно вы платите на каждом блоке.</p>
+    </div>
+
+    <div class="stages">
+      <!-- 1 -->
+      <article class="stage reveal">
+        <div class="stage-core">
+          <div class="stage-num"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h10"/><circle cx="18" cy="19" r="2.4"/></svg><span class="n">01</span></div>
+          <div class="stage-body">
+            <h3>Процесс «Отдел развития» — 4 воронки</h3>
+            <p>Формируем воронки <b>Отдел развития</b>, <b>Согласование КП и договоров</b>, <b>Составление регламента (брифа)</b> и <b>Фиксация оплат</b> по техническому заданию. Добавляем поля в карточки, настраиваем бизнес-процессы: связку воронок, автоматическую передачу данных, постановку задач, уведомления сотрудникам и сообщения клиентам. Настраиваем автозаполнение полей для отчётности и сегментации, обязательность заполнения на определённых стадиях. Тестируем и внедряем поэтапно.</p>
+            <div class="stage-tags"><span class="stag">4 воронки + стадии</span><span class="stag">Поля в карточках</span><span class="stag">Связка воронок</span><span class="stag">Автозадачи</span><span class="stag">Уведомления и сообщения</span><span class="stag">Обязательные поля</span><span class="stag">Тестирование</span></div>
+          </div>
+          <div class="stage-price"><span class="k">Стоимость</span><span class="v">52 000 ₽</span><span class="h">~21 час</span></div>
+        </div>
+      </article>
+      <!-- 2 -->
+      <article class="stage reveal">
+        <div class="stage-core">
+          <div class="stage-num"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM4 21a8 8 0 0 1 16 0"/></svg><span class="n">02</span></div>
+          <div class="stage-body">
+            <h3>Процесс «Подбор кандидатов и трудоустройство» — 4 воронки</h3>
+            <p>Формируем воронки <b>Отдел подбора</b>, <b>Покупка билетов</b>, <b>Производство</b> и <b>Сопровождение</b>. Добавляем поля в карточки, настраиваем бизнес-процессы: связку воронок и автоматическую передачу данных, <b>синхронизацию с карточкой кандидата</b>, автозадачи, уведомления сотрудникам и сообщения кандидатам, автозаполнение для отчётности и сегментации, обязательные поля на стадиях. Тестируем и внедряем поэтапно.</p>
+            <div class="stage-tags"><span class="stag">4 воронки + стадии</span><span class="stag">Поля в карточках</span><span class="stag">Синхронизация с кандидатом</span><span class="stag">Связка воронок</span><span class="stag">Автозадачи</span><span class="stag">Уведомления и сообщения</span><span class="stag">Обязательные поля</span></div>
+          </div>
+          <div class="stage-price"><span class="k">Стоимость</span><span class="v">58 000 ₽</span><span class="h">~23 часа</span></div>
+        </div>
+      </article>
+      <!-- 3 -->
+      <article class="stage reveal">
+        <div class="stage-core">
+          <div class="stage-num"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10m0 0-3-3m3 3-3 3"/><path d="M20 17H10m0 0 3-3m-3 3 3 3"/></svg><span class="n">03</span></div>
+          <div class="stage-body">
+            <h3>Интеграции: сайт, телефония, мессенджеры, Авито Работа, hh.ru</h3>
+            <p>Подключаем пять каналов к порталу и заводим их в воронки: заявки с сайта, звонки с записью, переписка WhatsApp и Telegram в открытых линиях, отклики с <b>Авито Работа</b> и <b>hh.ru</b> — в воронку подбора. Настраиваем автосоздание карточек, фиксацию источника, распределение по ответственным и защиту от дублей. Тестируем на реальных обращениях.</p>
+            <div class="stage-tags"><span class="stag">Сайт — 12 000 ₽</span><span class="stag">Телефония — 14 000 ₽</span><span class="stag">Мессенджеры — 16 000 ₽</span><span class="stag">Авито Работа — 16 000 ₽</span><span class="stag">hh.ru — 14 000 ₽</span></div>
+          </div>
+          <div class="stage-price"><span class="k">Стоимость</span><span class="v">72 000 ₽</span><span class="h">~29 часов</span></div>
+        </div>
+      </article>
+      <!-- 4 -->
+      <article class="stage reveal">
+        <div class="stage-core">
+          <div class="stage-num"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 4-5"/></svg><span class="n">04</span></div>
+          <div class="stage-body">
+            <h3>Базовая отчётность</h3>
+            <p>Настраиваем пять базовых отчётов на штатных инструментах аналитики Битрикс24, чтобы руководитель видел воронку и результат по каждому этапу без ручных выгрузок — в том числе <b>эффективность источников кандидатов</b>.</p>
+            <div class="stage-tags"><span class="stag">Отдел развития: сделки, конверсии, суммы</span><span class="stag">Кандидаты / трудоустроенные</span><span class="stag">Источники откликов</span><span class="stag">Покупка билетов</span><span class="stag">Прибытие на объект</span></div>
+          </div>
+          <div class="stage-price"><span class="k">Стоимость</span><span class="v">18 000 ₽</span><span class="h">~7 часов</span></div>
+        </div>
+      </article>
+      <!-- 5 -->
+      <article class="stage reveal">
+        <div class="stage-core">
+          <div class="stage-num"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 8l9 4 9-4-9-4Z"/><path d="M7 10v5c0 1 2 3 5 3s5-2 5-3v-5M21 8v5"/></svg><span class="n">05</span></div>
+          <div class="stage-body">
+            <h3>Обучение команды и запись</h3>
+            <p>Проводим обучение в формате вебинара по основам работы в системе — <b>до двух часовых сессий</b>. Каждое обучение записываем на видео и передаём вам, чтобы новые сотрудники могли учиться самостоятельно.</p>
+            <div class="stage-tags"><span class="stag">До 2 сессий по 1 часу</span><span class="stag">Формат вебинара</span><span class="stag">Видеозапись обучений</span><span class="stag">Ответы на вопросы</span></div>
+          </div>
+          <div class="stage-price"><span class="k">Стоимость</span><span class="v">12 000 ₽</span><span class="h">~5 часов</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- REPORTS -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Отчётность</span>
+      <h2 class="h2" style="margin-top:20px">Пять отчётов, которые<br>покажут узкое место</h2>
+      <p>Собираем на штатной аналитике Битрикс24 — данные подтягиваются из полей, которые заполняются автоматически по ходу процесса и при поступлении обращений из каналов.</p>
+    </div>
+    <div class="reps">
+      <div class="rep reveal">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg></div>
+        <h4>Отдел развития</h4>
+        <p>Новые сделки, конверсии по стадиям и суммы в разрезе периода и менеджера.</p>
+      </div>
+      <div class="rep reveal">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7a3 3 0 1 0 0-.001M3 20a6 6 0 0 1 12 0"/><path d="M17 11h5m-2.5-2.5v5"/></svg></div>
+        <h4>Кандидаты и трудоустройства</h4>
+        <p>Количество новых кандидатов и сколько из них доведено до трудоустройства.</p>
+      </div>
+      <div class="rep reveal">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5"/><path d="M5 8v8l7 5 7-5V8"/></svg></div>
+        <h4>Источники откликов</h4>
+        <p>Сколько кандидатов дал Авито, hh, сайт и мессенджеры — и кто из них дошёл до объекта.</p>
+      </div>
+      <div class="rep reveal">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l16-6-6 16-2-7-8-3Z"/></svg></div>
+        <h4>Покупка билетов</h4>
+        <p>Оформленные билеты, направления и стоимость логистики заезда.</p>
+      </div>
+      <div class="rep reveal">
+        <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h4>Прибытие на объект</h4>
+        <p>Кто доехал и вышел на смену, а кто «отвалился» по пути — с разбивкой по объектам.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Как идёт проект · 6–8 недель</span>
+      <h2 class="h2" style="margin-top:20px">Поэтапное внедрение,<br>а не «сдача под ключ» в конце</h2>
+      <p>Отделы начинают работать в системе по мере готовности контуров — сначала развитие, затем подбор с каналами. Так команда привыкает постепенно, а мы получаем обратную связь до финала.</p>
+    </div>
+    <div class="plan">
+      <div class="pcard reveal">
+        <span class="w">Недели 1–2</span>
+        <h4>Контур «Отдел развития»</h4>
+        <p>Стадии, поля, связки воронок и автозадачи. Первые сделки заводим вместе с вашими менеджерами.</p>
+      </div>
+      <div class="pcard reveal">
+        <span class="w">Недели 3–4</span>
+        <h4>Контур «Подбор»</h4>
+        <p>Воронки подбора, билетов, производства и сопровождения. Синхронизация с карточкой кандидата.</p>
+      </div>
+      <div class="pcard reveal">
+        <span class="w">Недели 5–6</span>
+        <h4>Интеграции каналов</h4>
+        <p>Сайт, телефония, мессенджеры, Авито Работа и hh.ru. Тест на реальных заявках и откликах.</p>
+      </div>
+      <div class="pcard reveal">
+        <span class="w">Недели 7–8</span>
+        <h4>Отчёты и обучение</h4>
+        <p>Настройка отчётности, два вебинара с записью, правки по итогам работы команды.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATE -->
+<section class="pad" style="padding-top:0" id="smeta">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Смета проекта</span>
+      <h2 class="h2" style="margin-top:20px">Стоимость работ</h2>
+      <p>Внедрение на штатных возможностях Битрикс24 и официальных коннекторах площадок. Подписки сервисов и лицензии портала оплачиваются отдельно.</p>
+    </div>
+
+    <div class="est-shell reveal">
+      <div class="est-core">
+        <div class="est-head">
+          <h3>Расчёт стоимости</h3>
+          <span class="note">Цены действительны 14 дней · НДС 5%</span>
+        </div>
+
+        <div class="egroup">Настройка процессов</div>
+        <div class="erow"><div class="l">1 · Процесс «Отдел развития» — 4 воронки<small>Отдел развития · Согласование КП и договоров · Регламент (бриф) · Фиксация оплат</small></div><div class="r">52 000 ₽</div></div>
+        <div class="erow"><div class="l">2 · Процесс «Подбор кандидатов и трудоустройство» — 4 воронки<small>Отдел подбора · Покупка билетов · Производство · Сопровождение</small></div><div class="r">58 000 ₽</div></div>
+
+        <div class="egroup">Интеграции</div>
+        <div class="erow"><div class="l">3 · Сайт<small>формы и заявки в CRM, разведение по воронкам, UTM-метки, виджет</small></div><div class="r">12 000 ₽</div></div>
+        <div class="erow"><div class="l">4 · Телефония<small>подключение оператора, маршрутизация, запись разговоров, пропущенные → задача</small></div><div class="r">14 000 ₽</div></div>
+        <div class="erow"><div class="l">5 · Мессенджеры — WhatsApp и Telegram<small>открытые линии, распределение диалогов, шаблоны и автосообщения кандидатам</small></div><div class="r">16 000 ₽</div></div>
+        <div class="erow"><div class="l">6 · Авито Работа<small>отклики и чаты → карточка кандидата в воронке подбора, вакансия и источник</small></div><div class="r">16 000 ₽</div></div>
+        <div class="erow"><div class="l">7 · hh.ru<small>отклики на вакансии → кандидат, контакты и резюме в карточке, автозадача рекрутеру</small></div><div class="r">14 000 ₽</div></div>
+        <div class="erow sub"><div class="l"><b>Интеграции — итого</b><small>5 каналов</small></div><div class="r">72 000 ₽</div></div>
+
+        <div class="egroup">Отчётность и обучение</div>
+        <div class="erow"><div class="l">8 · Базовая отчётность — 5 отчётов<small>Развитие · Кандидаты и трудоустройства · Источники откликов · Билеты · Прибытие</small></div><div class="r">18 000 ₽</div></div>
+        <div class="erow"><div class="l">9 · Обучение команды и видеозапись<small>до 2 часовых сессий в формате вебинара</small></div><div class="r">12 000 ₽</div></div>
+
+        <div class="erow sub"><div class="l"><b>Итого работы</b><small>~85 часов</small></div><div class="r">212 000 ₽</div></div>
+
+        <div class="egroup">Налог</div>
+        <div class="erow"><div class="l">НДС 5%</div><div class="r">10 600 ₽</div></div>
+        <div class="erow total"><div class="l">Итого к оплате</div><div class="r">222 600&nbsp;<span class="u">₽</span></div></div>
+
+        <div class="est-foot">
+          <span><span class="d"></span>Оплата: 50% предоплата, 50% по завершении внедрения</span>
+          <span><span class="d"></span>Лицензии Битрикс24 и подписки сервисов оплачиваются отдельно</span>
+          <span><span class="d"></span>Гарантийная поддержка 1 месяц — в подарок</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCOPE -->
+<section class="pad" style="padding-top:0" id="scope">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Границы проекта</span>
+      <h2 class="h2" style="margin-top:20px">Что оценивается отдельно</h2>
+      <p>Предложение покрывает настройку процессов, интеграцию пяти каналов, отчётность и обучение. Всё, что требует обмена с учётными системами или программной разработки, мы оцениваем отдельным этапом после уточнения задачи.</p>
+    </div>
+
+    <div class="scope reveal">
+      <div class="scope-core">
+        <h3>
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5m0 3.5v.01"/><circle cx="12" cy="12" r="9"/></svg></span>
+          Не входит в стоимость 212 000 ₽
+        </h3>
+        <p>Перечисленное ниже — типовые задачи, которые чаще всего возникают у аутстаффинговых компаний. Мы готовы их сделать, но считаем отдельно: объём и стоимость зависят от конкретных требований.</p>
+
+        <div class="scope-grid">
+          <div class="sitem">
+            <h4>1С и кадровый учёт</h4>
+            <p>Обмен с 1С, зарплатным и кадровым контуром, выгрузка табелей.</p>
+          </div>
+          <div class="sitem">
+            <h4>Документы и подписи</h4>
+            <p>Генерация пакета документов, КЭДО, электронная подпись договоров.</p>
+          </div>
+          <div class="sitem">
+            <h4>Перенос данных</h4>
+            <p>Миграция базы заказчиков и кандидатов из Excel и текущих систем.</p>
+          </div>
+          <div class="sitem">
+            <h4>Своя разработка</h4>
+            <p>Приложения и интерфейсы вне штатных возможностей портала.</p>
+          </div>
+          <div class="sitem">
+            <h4>Сложная аналитика</h4>
+            <p>Дашборды и отчёты за пределами штатной аналитики Битрикс24.</p>
+          </div>
+          <div class="sitem">
+            <h4>Другие площадки и каналы</h4>
+            <p>Работа.ру, SuperJob, Telegram-боты, рассылки и прочие источники сверх пяти в смете.</p>
+          </div>
+          <div class="sitem">
+            <h4>Доработка сайта</h4>
+            <p>Изменения вёрстки и логики самого сайта — со стороны портала подключение включено.</p>
+          </div>
+          <div class="sitem">
+            <h4>Подписки сервисов</h4>
+            <p>Провайдер WhatsApp, приложения Маркета, тарифы Авито, hh и оператора связи.</p>
+          </div>
+          <div class="sitem">
+            <h4>Лицензии Битрикс24</h4>
+            <p>Тариф портала оплачивается отдельно, поможем подобрать под число сотрудников.</p>
+          </div>
+        </div>
+
+        <div class="scope-note">
+          <span class="b"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span>Любую из этих задач оцениваем по запросу и добавляем отдельным этапом — до старта или после запуска. Так вы платите за расширение только тогда, когда основной процесс уже работает и понятно, что действительно нужно.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow"><span class="spark"></span>Условия</span>
+      <h2 class="h2" style="margin-top:20px">Прозрачно и без сюрпризов</h2>
+    </div>
+    <div class="terms">
+      <div class="tcard reveal">
+        <h3><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span>Оплата и гарантии</h3>
+        <ul class="tlist">
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>212 000 ₽ + НДС 5% = <b>222 600 ₽</b></li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>50% предоплата, 50% по завершении внедрения</li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Срок — 6–8 недель с поэтапной сдачей контуров</li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>1 месяц гарантийной поддержки после запуска — бесплатно</li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Работаем по договору, закрывающие документы</li>
+        </ul>
+      </div>
+      <div class="tcard reveal">
+        <h3><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM4 21a8 8 0 0 1 16 0"/></svg></span>Что нужно от вас</h3>
+        <ul class="tlist">
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Доступ специалиста по внедрению к порталу Битрикс24</li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Доступы к кабинетам Авито Работа, hh.ru, оператору связи и сайту</li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Список сотрудников, ролей и ответственных по этапам</li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Ответственный со стороны компании для согласований</li>
+          <li><span class="b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Участие сотрудников в тестировании и обучении</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="wrap">
+    <div class="cta-shell reveal">
+      <div class="cta-core">
+        <h2 class="h2">Готовы навести порядок<br>в подборе и продажах?</h2>
+        <p>Первый шаг — короткий созвон: уточняем стадии воронок, ответственных и доступы к площадкам, фиксируем сроки и стартуем.</p>
+        <div class="btns">
+          <button class="btn primary" type="button" onclick="window.print()">Скачать КП в PDF
+            <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <div class="brand" style="font-family:'Unbounded';font-weight:700;font-size:18px"><span class="dot" style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--lime);margin-right:8px"></span>ЛАЙМ</div>
+      <div class="co">Артём Скобелев · Внедрение Битрикс24 и amoCRM · Ижевск<br><a href="https://limecrm.ru" target="_blank" rel="noopener">limecrm.ru</a> · <a href="tel:+79991891586">+7 999 189 15 86</a> · <a href="mailto:a.skobelev@limecrm.ru">a.skobelev@limecrm.ru</a></div>
+    </div>
+    <div class="rt">Коммерческое предложение<br>Внедрение Битрикс24 для аутстаффинга<br>24 июля 2026</div>
+  </div>
+</footer>
+
+<script>
+/* Scroll reveal */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e,i){e.style.transitionDelay=(Math.min(i%4,3)*60)+'ms';io.observe(e);});
+})();
+
+/* Reveal everything before printing so nothing prints blank */
+(function(){
+  function showAll(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});}
+  window.addEventListener('beforeprint',showAll);
+  if(window.matchMedia){
+    var mq=window.matchMedia('print');
+    if(mq.addEventListener){mq.addEventListener('change',function(m){if(m.matches)showAll()});}
+  }
+})();
+</script>
+</body>
+</html>
