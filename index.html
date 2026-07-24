@@ -216,8 +216,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
 .icard{padding:22px 22px;border-radius:22px;background:var(--glass);border:1px solid var(--line);display:flex;flex-direction:column}
 .icard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
 .icard .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--white);border:1px solid var(--line-2);color:var(--ink)}
-.icard .price{font-family:'JetBrains Mono';font-size:12px;font-weight:500;color:var(--ink-2);padding:5px 10px;border-radius:999px;
-  background:var(--white);border:1px solid var(--line-2);white-space:nowrap}
 .icard h4{font-family:'Unbounded';font-size:15px;font-weight:600;margin-bottom:7px;letter-spacing:-.01em}
 .icard > p{font-size:12.8px;color:var(--ink-3);line-height:1.45;margin-bottom:13px}
 .icard ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:auto}
@@ -234,7 +232,7 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .stage-core{border-radius:calc(var(--radius) - 8px);background:var(--white);
   box-shadow:inset 0 1px 1px rgba(255,255,255,.8);
-  display:grid;grid-template-columns:96px 1fr auto;gap:8px;align-items:stretch;overflow:hidden}
+  display:grid;grid-template-columns:96px 1fr;gap:8px;align-items:stretch;overflow:hidden}
 .stage-num{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
   padding:28px 0;background:linear-gradient(160deg,rgba(198,242,78,.16),rgba(252,252,250,0));border-right:1px solid var(--line-2)}
 .stage-num .n{font-family:'Unbounded';font-weight:700;font-size:30px;color:var(--ink)}
@@ -244,16 +242,10 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
 .stage-body p{font-size:14.5px;color:var(--ink-2);max-width:66ch}
 .stage-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
 .stag{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--paper);border:1px solid var(--line-2);color:var(--ink-2)}
-.stage-price{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:3px;
-  padding:26px 28px;background:linear-gradient(180deg,rgba(244,244,238,.5),rgba(252,252,250,0));border-left:1px solid var(--line-2);min-width:170px}
-.stage-price .k{font-family:'JetBrains Mono';font-size:9.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3)}
-.stage-price .v{font-family:'Unbounded';font-weight:600;font-size:22px;white-space:nowrap}
-.stage-price .h{font-family:'JetBrains Mono';font-size:11px;color:var(--ink-3)}
 @media(max-width:820px){
   .stage-core{grid-template-columns:1fr}
   .stage-num{flex-direction:row;justify-content:flex-start;gap:14px;padding:16px 24px;border-right:0;border-bottom:1px solid var(--line-2)}
   .stage-num .n{font-size:22px}
-  .stage-price{align-items:flex-start;border-left:0;border-top:1px solid var(--line-2);flex-direction:row;justify-content:space-between;width:100%}
 }
 
 /* ============ REPORTS ============ */
@@ -383,9 +375,8 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
   .reps{grid-template-columns:repeat(3,1fr)}
   .results{grid-template-columns:repeat(4,1fr)}
   .plan{grid-template-columns:repeat(4,1fr)}
-  .stage-core{grid-template-columns:80px 1fr auto}
+  .stage-core{grid-template-columns:80px 1fr}
   .stage-num{flex-direction:column;padding:20px 0;border-right:1px solid #DEDED6;border-bottom:0}
-  .stage-price{align-items:flex-end;flex-direction:column;justify-content:center;width:auto;border-left:1px solid #DEDED6;border-top:0}
   .display{font-size:34px!important}
   .h2{font-size:24px!important}
   .lede{font-size:15px!important}
@@ -685,7 +676,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
       <div class="icard reveal">
         <div class="icard-top">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span>
-          <span class="price">14 000 ₽</span>
         </div>
         <h4>Сайт</h4>
         <p>Заявки заказчиков и анкеты кандидатов с сайта — сразу в CRM, с сохранением рекламного источника.</p>
@@ -700,7 +690,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
       <div class="icard reveal">
         <div class="icard-top">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 9 6 15 15 15l2-3-4-2-2 2c-2-1-5-4-6-6l2-2-2-4-3 0Z"/></svg></span>
-          <span class="price">12 000 ₽</span>
         </div>
         <h4>Телефония</h4>
         <p>Все звонки — в CRM: с записью, ответственным и задачей по пропущенному вызову.</p>
@@ -715,7 +704,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
       <div class="icard reveal">
         <div class="icard-top">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 1 1-3.6-6.7"/><path d="M4 20l1.5-4"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span>
-          <span class="price">16 000 ₽</span>
         </div>
         <h4>Мессенджеры</h4>
         <p>MAX и Telegram в открытых линиях: переписка в карточке, а не в личном телефоне сотрудника.</p>
@@ -730,7 +718,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
       <div class="icard reveal">
         <div class="icard-top">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
-          <span class="price">6 000 ₽</span>
         </div>
         <h4>Авито Работа</h4>
         <p>Отклики и чаты с Авито — в воронке подбора, вместе с вакансией и источником.</p>
@@ -745,7 +732,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
       <div class="icard reveal">
         <div class="icard-top">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M6 12h12"/></svg></span>
-          <span class="price">6 000 ₽</span>
         </div>
         <h4>hh.ru</h4>
         <p>Отклики с hh падают в ту же воронку подбора — рекрутеру не нужно жить в двух кабинетах.</p>
@@ -760,10 +746,9 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
       <div class="icard reveal" style="background:linear-gradient(160deg,rgba(198,242,78,.22),rgba(252,252,250,.6))">
         <div class="icard-top">
           <span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span>
-          <span class="price">54 000 ₽</span>
         </div>
-        <h4>Итого по интеграциям</h4>
-        <p>Пять каналов, подключённых к порталу и заведённых в воронки. Любой блок можно снять из проекта или добавить позже — стоимость меняется на его цену.</p>
+        <h4>Пять каналов — один процесс</h4>
+        <p>Стоимость каждого канала указана в смете ниже. Любой блок можно снять из проекта или добавить позже — сумма меняется на его цену.</p>
         <ul>
           <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Настройка на стороне портала и площадок</li>
           <li><span class="b"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Тестирование на реальных обращениях</li>
@@ -785,7 +770,7 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
     <div class="shead reveal">
       <span class="eyebrow"><span class="spark"></span>Состав работ · 5 блоков</span>
       <h2 class="h2" style="margin-top:20px">Что входит в проект</h2>
-      <p>Прозрачная декомпозиция: за что именно вы платите на каждом блоке.</p>
+      <p>Прозрачная декомпозиция: что именно входит в каждый блок. Стоимость — в смете ниже.</p>
     </div>
 
     <div class="stages">
@@ -798,7 +783,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
             <p>Формируем воронки <b>Отдел развития</b>, <b>Согласование КП и договоров</b>, <b>Составление регламента (брифа)</b> и <b>Фиксация оплат</b> по техническому заданию. Добавляем поля в карточки, настраиваем бизнес-процессы: связку воронок, автоматическую передачу данных, постановку задач, уведомления сотрудникам и сообщения клиентам. Настраиваем автозаполнение полей для отчётности и сегментации, обязательность заполнения на определённых стадиях. Тестируем и внедряем поэтапно.</p>
             <div class="stage-tags"><span class="stag">4 воронки + стадии</span><span class="stag">Поля в карточках</span><span class="stag">Связка воронок</span><span class="stag">Автозадачи</span><span class="stag">Уведомления и сообщения</span><span class="stag">Обязательные поля</span><span class="stag">Тестирование</span></div>
           </div>
-          <div class="stage-price"><span class="k">Стоимость</span><span class="v">63 000 ₽</span></div>
         </div>
       </article>
       <!-- 2 -->
@@ -810,7 +794,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
             <p>Формируем воронки <b>Отдел подбора</b>, <b>Покупка билетов</b>, <b>Производство</b> и <b>Сопровождение</b>. Добавляем поля в карточки, настраиваем бизнес-процессы: связку воронок и автоматическую передачу данных, <b>синхронизацию с карточкой кандидата</b>, автозадачи, уведомления сотрудникам и сообщения кандидатам, автозаполнение для отчётности и сегментации, обязательные поля на стадиях. Тестируем и внедряем поэтапно.</p>
             <div class="stage-tags"><span class="stag">4 воронки + стадии</span><span class="stag">Поля в карточках</span><span class="stag">Синхронизация с кандидатом</span><span class="stag">Связка воронок</span><span class="stag">Автозадачи</span><span class="stag">Уведомления и сообщения</span><span class="stag">Обязательные поля</span></div>
           </div>
-          <div class="stage-price"><span class="k">Стоимость</span><span class="v">70 000 ₽</span></div>
         </div>
       </article>
       <!-- 3 -->
@@ -820,9 +803,8 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
           <div class="stage-body">
             <h3>Интеграции: сайт, телефония, мессенджеры, Авито Работа, hh.ru</h3>
             <p>Подключаем пять каналов к порталу и заводим их в воронки: заявки с сайта, звонки с записью, переписка MAX и Telegram в открытых линиях, отклики с <b>Авито Работа</b> и <b>hh.ru</b> — в воронку подбора. Настраиваем автосоздание карточек, фиксацию источника, распределение по ответственным и защиту от дублей. Тестируем на реальных обращениях.</p>
-            <div class="stage-tags"><span class="stag">Сайт — 14 000 ₽</span><span class="stag">Телефония — 12 000 ₽</span><span class="stag">Мессенджеры — 16 000 ₽</span><span class="stag">Авито Работа — 6 000 ₽</span><span class="stag">hh.ru — 6 000 ₽</span></div>
+            <div class="stage-tags"><span class="stag">Сайт</span><span class="stag">Телефония</span><span class="stag">Мессенджеры</span><span class="stag">Авито Работа</span><span class="stag">hh.ru</span><span class="stag">Защита от дублей</span><span class="stag">Тест на реальных обращениях</span></div>
           </div>
-          <div class="stage-price"><span class="k">Стоимость</span><span class="v">54 000 ₽</span></div>
         </div>
       </article>
       <!-- 4 -->
@@ -834,7 +816,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
             <p>Настраиваем пять базовых отчётов на штатных инструментах аналитики Битрикс24, чтобы руководитель видел воронку и результат по каждому этапу без ручных выгрузок — в том числе <b>эффективность источников кандидатов</b>.</p>
             <div class="stage-tags"><span class="stag">Отдел развития: сделки, конверсии, суммы</span><span class="stag">Кандидаты / трудоустроенные</span><span class="stag">Источники откликов</span><span class="stag">Покупка билетов</span><span class="stag">Прибытие на объект</span></div>
           </div>
-          <div class="stage-price"><span class="k">Стоимость</span><span class="v">18 000 ₽</span></div>
         </div>
       </article>
       <!-- 5 -->
@@ -846,7 +827,6 @@ mark{background:linear-gradient(180deg,transparent 58%,rgba(198,242,78,.55) 0);c
             <p>Проводим обучение в формате вебинара по основам работы в системе — <b>до двух часовых сессий</b>. Каждое обучение записываем на видео и передаём вам, чтобы новые сотрудники могли учиться самостоятельно.</p>
             <div class="stage-tags"><span class="stag">До 2 сессий по 1 часу</span><span class="stag">Формат вебинара</span><span class="stag">Видеозапись обучений</span><span class="stag">Ответы на вопросы</span></div>
           </div>
-          <div class="stage-price"><span class="k">Стоимость</span><span class="v">12 000 ₽</span></div>
         </div>
       </article>
     </div>
